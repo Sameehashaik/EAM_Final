@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Saved Reservations</title>
+  <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="container">
+  <h2>Saved Reservations</h2>
+
+  <div th:if="${#lists.isEmpty(reservations)}">
+    <p>No reservations yet.</p>
+  </div>
+
+  <table th:if="${!#lists.isEmpty(reservations)}" style="width:100%; border-collapse:collapse">
+    <thead>
+      <tr>
+        <th>Code</th><th>Flight</th><th>Date</th><th>Customer</th>
+        <th>Amount</th><th>Status</th><th>ID</th><th>JSON</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="r : ${reservations}">
+        <td th:text="${r.reservationCode}"></td>
+        <td th:text="${r.flightNo}"></td>
+        <td th:text="${r.travelDate}"></td>
+        <td th:text="${r.customer != null ? r.customer.name : ''}"></td>
+        <td th:text="${r.totalAmount}"></td>
+        <td th:text="${r.payment != null ? r.payment.status : ''}"></td>
+        <td th:text="${r.id}"></td>
+        <td><a th:href="@{'/api/reservations/' + ${r.id}}">view</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <a class="btn-link" th:href="@{/client/reservations/new}">Create new</a>
+    <a class="btn-link" th:href="@{/}">Home</a>
+  </div>
+</div>
+</body>
+</html>

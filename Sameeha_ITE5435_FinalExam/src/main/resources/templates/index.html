@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>HuskyAir – Home</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="container">
+  <h2>HuskyAir Reservation</h2>
+  <p><a class="btn-link" th:href="@{/client/reservations/new}">Create a new Reservation</a></p>
+  <p><a class="btn-link" th:href="@{/client/reservations}">View saved Reservations</a></p>
+  
+  <p>REST sample JSON: <a class="btn-link" th:href="@{/api/reservations/sample}">/api/reservations/sample</a></p>
+</div>
+</body>
+
+</html>

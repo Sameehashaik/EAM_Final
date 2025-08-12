@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>HuskyAir – New Reservation</title>
+  <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="container">
+  <h2>New Reservation</h2>
+
+  <form th:action="@{/client/reservations/next}" th:object="${reservation}" method="post">
+    <fieldset>
+      <legend>Reservation</legend>
+      <div class="grid">
+        <div class="form-row half">
+          <label>
+            Reservation Code
+            <input th:field="*{reservationCode}"
+                   th:classappend="${#fields.hasErrors('reservationCode')} ? 'is-invalid'">
+            <span class="error" th:if="${#fields.hasErrors('reservationCode')}" th:errors="*{reservationCode}"></span>
+          </label>
+        </div>
+
+        <div class="form-row half">
+          <label>
+            Flight No
+            <input th:field="*{flightNo}"
+                   th:classappend="${#fields.hasErrors('flightNo')} ? 'is-invalid'">
+            <span class="error" th:if="${#fields.hasErrors('flightNo')}" th:errors="*{flightNo}"></span>
+          </label>
+        </div>
+
+        <div class="form-row half">
+          <label>
+            Travel Date
+            <input type="date" th:field="*{travelDate}">
+          </label>
+        </div>
+
+        <div class="form-row half">
+          <label>
+            Total Amount
+            <input type="number" step="0.01" th:field="*{totalAmount}">
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Customer</legend>
+      <div class="grid">
+        <div class="form-row third">
+          <label>
+            Name
+            <input th:field="*{customer.name}">
+          </label>
+        </div>
+        <div class="form-row third">
+          <label>
+            Email
+            <input type="email" th:field="*{customer.email}">
+          </label>
+        </div>
+        <div class="form-row third">
+          <label>
+            Phone
+            <input th:field="*{customer.phone}">
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Payment</legend>
+      <div class="grid">
+        <div class="form-row third">
+          <label>
+            Method
+            <select th:field="*{payment.method}">
+              <option value="VISA">VISA</option>
+              <option value="MASTERCARD">MASTERCARD</option>
+              <option value="CASH">CASH</option>
+            </select>
+          </label>
+        </div>
+        <div class="form-row third">
+          <label>
+            Amount
+            <input type="number" step="0.01" th:field="*{payment.amount}">
+          </label>
+        </div>
+        <div class="form-row third">
+          <label>
+            Status
+            <select th:field="*{payment.status}">
+              <option value="PENDING">PENDING</option>
+              <option value="PAID">PAID</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="error-panel" th:if="${#fields.hasAnyErrors()}">
+      <p><strong>Please correct the errors:</strong></p>
+      <ul>
+        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+      </ul>
+    </div>
+
+    <div class="actions">
+      <button type="submit">Next</button>
+      <a class="btn-link" th:href="@{/}">Back to Home</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>
