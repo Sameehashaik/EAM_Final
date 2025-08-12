@@ -105,6 +105,15 @@ Application will start at: [http://localhost:8080](http://localhost:8080)
 
 ---
 
+## Client-Side (Thymeleaf) URLs
+
+| URL |	Description |
+| ------------------------------- | ----------------------------------------------------------- |
+| `/`                             | Home page (index)                                           |
+| `/client/reservations/new`      | Reservation creation form                                   |
+| `/client/reservations`          | List of all saved reservations (table view with JSON links) |
+| `/client/reservations/success`  | Reservation success page (shows saved data as JSON)         |
+
 ## Example JSON for POST/PUT
 
 ```json
